@@ -34,16 +34,17 @@ const Cart = () => {
           );
         })}
       </div>
-      <OrderDetails
-        totalPrice={totalPrice}
-        totalItems={totalItems}
-        Fees={Fees}
-        isLoggedIn={isLoggedIn}
-        setRedirectAfterLogin={setRedirectAfterLogin}
-      />
+      <div className="relative py-8 pr-4 w-[25%]">
+        <OrderDetails
+          totalPrice={totalPrice}
+          totalItems={totalItems}
+          Fees={Fees}
+          isLoggedIn={isLoggedIn}
+          setRedirectAfterLogin={setRedirectAfterLogin}
+        />
+      </div>
     </div>
   ) : (
-    // <div className="flex justify-center items-center h-84 text-5xl font-extrabold text-white"> Cart is empty...</div>
     <div className="flex flex-col justify-center items-center h-84 text-center text-xl font-semibold text-gray-700 m-10">
       <div className="fa-solid fa-cart-arrow-down text-white text-8xl p-4 md:block"></div>
 

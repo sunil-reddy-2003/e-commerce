@@ -5,8 +5,7 @@ const OrderDetails = (props) => {
   const navigate = useNavigate();
 
   return (
-    <div className="relative py-8 pr-4 w-[25%]">
-      <div className="sticky top-20 p-8 bg-white/10">
+    <div className="sticky top-20 p-8 bg-white/10">
         <h2 className="font-bold text-lg mb-4">Order details</h2>
 
         {/* MRP Row */}
@@ -51,7 +50,6 @@ const OrderDetails = (props) => {
           Continue to shipping
         </button>
       </div>
-    </div>
   );
 };
 
