@@ -1,12 +1,12 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-const ProtectedRoute = () => {
+const ProtectedRoute = ({ children }) => { // ✅ destructure children here
   const { isLoggedIn } = useAuth();
 
-  // If logged in, render the child route(s)
-  // Otherwise, redirect to /log-in
-  return isLoggedIn ? <Outlet /> : <Navigate to="/log-in" replace />;
+  if (!isLoggedIn) return <Navigate to="/log-in" replace />;
+
+  return <>{children}</>; // ✅ now children is defined
 };
 
 export default ProtectedRoute;

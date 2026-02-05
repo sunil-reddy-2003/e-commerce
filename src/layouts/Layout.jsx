@@ -12,12 +12,10 @@ const Layout = () => {
       const existingProduct = prevCart.find((p) => p.id === product.id);
 
       if (existingProduct) {
-        // Increment quantity for existing product
         return prevCart.map( (p) =>
           p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p,
         );
       } else {
-        // Add new product with quantity 1
         return [...prevCart, { ...product, quantity: 1 }];
       }
     });
@@ -49,7 +47,7 @@ const Layout = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <NavBar onSearch={setSearchText} />
-      <main className="flex-1 bg-gray-700">
+      <main className="flex-1 bg-white">
         <Outlet context={{ searchText, addToCart ,cartItems,increaseQty,decreaseQty,deleteItem}} />
       </main>
       <Footer />

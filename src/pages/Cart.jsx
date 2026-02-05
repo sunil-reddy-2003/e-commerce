@@ -18,6 +18,7 @@ const Cart = () => {
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   const Fees = 0;
+  const btnName = "CONTINUE TO SHIPPING";
 
   return cartItems.length !== 0 ? (
     <div className="flex ">
@@ -41,19 +42,23 @@ const Cart = () => {
           Fees={Fees}
           isLoggedIn={isLoggedIn}
           setRedirectAfterLogin={setRedirectAfterLogin}
+          btnName={btnName}
         />
       </div>
     </div>
   ) : (
     <div className="flex flex-col justify-center items-center h-84 text-center text-xl font-semibold text-gray-700 m-10">
-      <div className="fa-solid fa-cart-arrow-down text-white text-8xl p-4 md:block"></div>
+      <div className="fa-solid fa-cart-arrow-down fa-shake text-black text-8xl p-4 md:block"></div>
 
-      <p className="text-white font-bold text-md">
-        Your cart is looking a little empty 😔
+      <p className="text-black font-bold text-md">
+        Your cart is looking a little empty{" "}
+        <span>
+          <i className="fa-regular fa-face-frown fa-flip"></i>
+        </span>
       </p>
 
       <button
-        className="m-4 px-18 py-2 bg-white text-sm border-white text-black rounded hover:bg-green-500 hover:text-white"
+        className="m-4 px-18 py-2 bg-black text-sm border-black text-white rounded hover:bg-green-500 hover:text-black"
         onClick={() => {
           navigate("/");
         }}

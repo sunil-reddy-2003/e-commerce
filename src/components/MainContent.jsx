@@ -9,7 +9,7 @@ const MainContent = () => {
     product.name.toLowerCase().includes(searchText.toLowerCase()),
   );
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full p-8  bg-gray-700">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full p-8  bg-white">
       {filteredProducts.length ? (
         filteredProducts.map((product) => (
           <ProductCard product={product} key={product.id} />

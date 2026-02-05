@@ -1,80 +1,135 @@
 const SignUp = () => {
   return (
-    <div className="md:flex h-screen">
-      <div className="hidden md:flex justify-center items-center md:w-[55%]  bg-fuchsia-700 ">
+    <div className="md:flex h-screen ml-4 mr-4 py-2">
+      <div className="hidden md:flex justify-center items-center md:w-[55%] border-l-2 rounded-l-md  bg-fuchsia-900 ">
         <p className="font-extrabold text-white text-4xl">Sign up. Show up. Level up</p>
       </div>
-      <div className="w-full md:w-[45%]  bg-slate-800 ">
-        <form className="flex flex-col justify-center items-stretch text-white h-full p-12 md:px-32 ">
-            <h1 className="font-bold text-2xl mb-3">
+      <div className=" w-full md:w-[45%] border-r-2 rounded-r-md bg-gray-800">
+        <form className="flex flex-col  text-white h-full p-12 md:px-32 ">
+            <h1 className="font-bold text-2xl text-white mb-6 text-left">
                 Create your account
                 <span>
                     <i className="pl-2 fa-solid fa-face-grin-hearts"></i>
                 </span>
             </h1>
-          <div className="flex flex-col mb-4  rounded-md ">
-            <label 
-                htmlFor="fname"
-                className='mb-2 font-light'
-                >First Name</label>
+          <div className="relative flex flex-col mb-4 ">
             <input 
                 type="text"
                 id="fname" 
-                placeholder="First name"
+                placeholder=" "
                 required
-                className="border-2 p-3 font-medium rounded-md border-zinc-600 hover:border-white " ></input>
-          </div>
-          <div className="flex flex-col mb-4 ">
+                className="peer text-xl  px-6 pt-6 pb-3 rounded-md bg-gray-900 border" ></input>
             <label 
-                
-                htmlFor="lname"
-                className='mb-2 font-light'
-                >Last Name</label>
+                htmlFor="fname"
+                className="absolute top-5 left-0 px-6  duration-200 transition-all
+              peer-focus:-translate-y-3
+              peer-focus:text-sm
+              peer-focus:font-light
+              peer-focus:text-gray-200
+
+              peer-not-placeholder-shown:-translate-y-3
+              peer-not-placeholder-shown:text-sm
+              peer-not-placeholder-shown:text-gray-200
+
+              peer-placeholder-shown:text-lg"
+                >First Name</label>
+            
+          </div>
+          <div className="relative flex flex-col mb-4 ">
             <input 
                 id="lname" 
                 type="text"
-                placeholder="Last name"
+                placeholder=" "
                 required
-                className="border-2 p-3 rounded-md border-zinc-600 hover:border-white"></input>
-          </div>
-          <div className="flex flex-col mb-4 ">
+                className="peer text-xl  px-6 pt-6 pb-3 rounded-md bg-gray-900 border" ></input>
             <label 
-                htmlFor="email"
-                className='mb-2 font-light '
-                >Email</label>
+                
+                htmlFor="lname"
+                className="absolute top-5 left-0 px-6  duration-200 transition-all
+              peer-focus:-translate-y-3
+              peer-focus:text-sm
+              peer-focus:font-light
+              peer-focus:text-gray-200
+
+              peer-not-placeholder-shown:-translate-y-3
+              peer-not-placeholder-shown:text-sm
+              peer-not-placeholder-shown:text-gray-200
+
+              peer-placeholder-shown:text-lg"
+                >Last Name</label>
+            
+          </div>
+          <div className="relative flex flex-col mb-4 ">
             <input 
                 id="email" 
                 type="email"
                 required
-                placeholder="Enter email"
-                className="border-2 p-3 rounded-md border-zinc-600 hover:border-white"></input>
-          </div>
-          <div className="flex flex-col mb-4 ">
+                placeholder=" "
+                className="peer text-xl  px-6 pt-6 pb-3 rounded-md bg-gray-900 border" ></input>
             <label 
-                htmlFor="password"
-                className='mb-2 font-light '
-                >Password</label>
+                htmlFor="email"
+                className="absolute top-5 left-0 px-6  duration-200 transition-all
+              peer-focus:-translate-y-3
+              peer-focus:text-sm
+              peer-focus:font-light
+              peer-focus:text-gray-200
+
+              peer-not-placeholder-shown:-translate-y-3
+              peer-not-placeholder-shown:text-sm
+              peer-not-placeholder-shown:text-gray-200
+
+              peer-placeholder-shown:text-lg"
+                >Email address</label>
+            
+          </div>
+          <div className="relative flex flex-col mb-4 ">
             <input 
                 id="password" 
                 type="password"
                 required
-                placeholder="Enter password"
-                className="border-2 p-3 rounded-md border-zinc-600 hover:border-white"></input>
-          </div>
-          <div className="flex flex-col mb-4 ">
+                placeholder=" "
+                className="peer text-xl  px-6 pt-6 pb-3 rounded-md bg-gray-900 border" ></input>
             <label 
-                htmlFor="number"
-                className='mb-2 font-light'
-                >Mobile number</label>
+                htmlFor="password"
+                className="absolute top-5 left-0 px-6  duration-200 transition-all
+              peer-focus:-translate-y-3
+              peer-focus:text-sm
+              peer-focus:font-light
+              peer-focus:text-gray-200
+
+              peer-not-placeholder-shown:-translate-y-3
+              peer-not-placeholder-shown:text-sm
+              peer-not-placeholder-shown:text-gray-200
+
+              peer-placeholder-shown:text-lg"
+                >Password</label>
+            
+          </div>
+          <div className="relative flex flex-col mb-4 ">
             <input 
                 id="number" 
                 required
-                placeholder="Enter mobile number"
-                className="border-2 p-3 rounded-md border-zinc-600 hover:border-white"></input>
+                placeholder=" "
+                className="peer text-xl  px-6 pt-6 pb-3 rounded-md bg-gray-900 border" ></input>
+            <label 
+                htmlFor="number"
+                className="absolute top-5 left-0 px-6  duration-200 transition-all
+              peer-focus:-translate-y-3
+              peer-focus:text-sm
+              peer-focus:font-light
+              peer-focus:text-gray-200
+
+              peer-not-placeholder-shown:-translate-y-3
+              peer-not-placeholder-shown:text-sm
+              peer-not-placeholder-shown:text-gray-200
+
+              peer-placeholder-shown:text-lg"
+                >Mobile number</label>
+            
           </div>
           <button 
             type="submit"
-            className=" rounded-full p-4 bg-white text-black hover:bg-black hover:text-white">
+            className=" rounded-full p-4 bg-white text-black hover:bg-fuchsia-900 hover:text-white cursor-pointer">
             Sign Up
           </button>
         </form>

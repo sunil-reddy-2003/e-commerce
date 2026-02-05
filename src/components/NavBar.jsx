@@ -6,7 +6,7 @@ const NavBar = (props) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 bg-white w-full flex items-center justify-between px-14 py-4 ">
+    <nav className="sticky top-0 z-50 bg-black/80 backdrop-blur-xs shadow-xl flex items-center justify-between px-14 py-4  rounded-full mt-2 mx-4 text-white">
       {/* Hamburger - MOBILE ONLY */}
       <button
         onClick={() => setOpen((prev) => !prev)}
