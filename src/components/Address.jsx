@@ -3,18 +3,14 @@ import { useState } from "react";
 const Address = (props) => {
   const [isDefault, setDefaultState] = useState(true);
   const [addressType, setAddressType] = useState("Home");
-  const { setShowAddressForm, mode, addressDetails, setShowAddressDetails } =
-    props;
-  const [formData, setFormData] = useState({
-    name: "",
-    mobile: "",
-    pincode: "",
-    area: "",
-    flat: "",
-    landmark: "",
-    city: "",
-    state: "",
-  });
+  const {
+    setShowAddressForm,
+    mode,
+    addressDetails,
+    setShowAddressDetails,
+    formData,
+    setFormData,
+  } = props;
 
   return (
     <div>
@@ -25,7 +21,17 @@ const Address = (props) => {
           onClick={() => setShowAddressForm(false)}
         ></i>
       </div>
-      <form className="flex flex-col bg-white p-4 w-[400px]">
+      <form
+        className="flex flex-col bg-white p-4 w-[400px]"
+        onSubmit={(e) => {
+          e.preventDefault();
+
+          const payload = { ...formData, addressType, isDefault };
+          addressDetails(payload);
+          setShowAddressDetails(false);
+          setShowAddressForm(false);
+        }}
+      >
         <AddressForm
           id="name"
           label="Name *"
@@ -146,15 +152,8 @@ const Address = (props) => {
 
           <div className="flex justify-center">
             <button
-              type="button"
+              type="submit"
               className="font-bold border rounded-full px-8 py-2 mt-2 w-full active:bg-black active:text-white"
-              onClick={(e) => {
-                e.preventDefault();
-                const payload = { ...formData, addressType, isDefault };
-                addressDetails(payload);
-                setShowAddressDetails(false);
-                setShowAddressForm(false);
-              }}
             >
               Save address
             </button>

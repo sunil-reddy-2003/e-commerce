@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { useState } from "react";
+import BackToTop from "../components/BackToTop";
 
 const Layout = () => {
   const [searchText, setSearchText] = useState("");
@@ -12,7 +13,7 @@ const Layout = () => {
       const existingProduct = prevCart.find((p) => p.id === product.id);
 
       if (existingProduct) {
-        return prevCart.map( (p) =>
+        return prevCart.map((p) =>
           p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p,
         );
       } else {
@@ -21,8 +22,7 @@ const Layout = () => {
     });
   };
 
-
-    const increaseQty = (id) => {
+  const increaseQty = (id) => {
     setCartItems((prev) =>
       prev.map((item) =>
         item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
@@ -48,13 +48,21 @@ const Layout = () => {
     <div className="min-h-screen flex flex-col">
       <NavBar onSearch={setSearchText} />
       <main className="flex-1 bg-white">
-        <Outlet context={{ searchText, addToCart ,cartItems,increaseQty,decreaseQty,deleteItem}} />
+        <Outlet
+          context={{
+            searchText,
+            addToCart,
+            cartItems,
+            increaseQty,
+            decreaseQty,
+            deleteItem,
+          }}
+        />
       </main>
       <Footer />
+      <BackToTop />
     </div>
   );
 };
 
 export default Layout;
-
-

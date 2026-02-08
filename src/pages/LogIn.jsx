@@ -28,20 +28,21 @@ const LogIn = () => {
               placeholder=" "
               className="peer text-xl  px-6 pt-6 pb-3 rounded-md bg-gray-900 border"
             />
-            <label 
-              htmlFor="email" 
+            <label
+              htmlFor="email"
               className="absolute top-5 left-0 px-6  duration-200 transition-all
               peer-focus:-translate-y-3
               peer-focus:text-sm
               peer-focus:font-light
-              peer-focus:text-slate-900
+              peer-focus:text-white
 
               peer-not-placeholder-shown:-translate-y-3
               peer-not-placeholder-shown:text-sm
-              peer-not-placeholder-shown:text-slate-900
+              peer-not-placeholder-shown:text-black
 
-              peer-placeholder-shown:text-lg">
-               Phone number / email address
+              peer-placeholder-shown:text-lg"
+            >
+              Phone number / email address
             </label>
           </div>
 
@@ -54,20 +55,22 @@ const LogIn = () => {
               placeholder=" "
               className="peer text-xl  px-6 pt-6 pb-3 rounded-md bg-gray-900 border"
             />
-            <label htmlFor="password" className="absolute top-5 left-0 px-6  duration-200 transition-all
+            <label
+              htmlFor="password"
+              className="absolute top-5 left-0 px-6  duration-200 transition-all
               peer-focus:-translate-y-3
               peer-focus:text-sm
               peer-focus:font-light
-              peer-focus:text-slate-900
+              peer-focus:text-white
 
               peer-not-placeholder-shown:-translate-y-3
               peer-not-placeholder-shown:text-sm
-              peer-not-placeholder-shown:text-slate-900
+              peer-not-placeholder-shown:text-black
 
-              peer-placeholder-shown:text-lg">
+              peer-placeholder-shown:text-lg"
+            >
               Password
             </label>
-            
           </div>
 
           {/* Buttons */}

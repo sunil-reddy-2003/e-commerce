@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const NavBar = (props) => {
-  const {onSearch}=props;
+  const { onSearch } = props;
   const [open, setOpen] = useState(false);
 
   return (
@@ -23,7 +23,7 @@ const NavBar = (props) => {
         to="."
         className="flex items-center text-2xl font-bold gap-2 flex-shrink-0 "
       >
-        <i className="fa-brands fa-atlassian"></i>
+        <i className="fa-brands fa-atlassian fa-flip"></i>
         <span>Amazon</span>
       </Link>
 
@@ -34,7 +34,7 @@ const NavBar = (props) => {
           placeholder="Search for products"
           aria-label="Search for products"
           className="border-2  md:w-3/6 p-2 rounded-full"
-          onInput={(e)=>{
+          onInput={(e) => {
             onSearch(e.target.value);
           }}
         ></input>

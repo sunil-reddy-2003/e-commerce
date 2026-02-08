@@ -1,5 +1,4 @@
-const AddressForm = ({ id, label ,type,value,onChange}) => (
-    
+const AddressForm = ({ id, label, type, value, onChange }) => (
   <div className="relative m-2 ">
     <input
       id={id}

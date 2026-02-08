@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 const PageNotExist = () => {
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-purple-700">
@@ -7,10 +7,14 @@ const PageNotExist = () => {
       <p className="text-xl font-bold">
         “Oops! Looks like this page ran away or never existed. 🕵️‍♂️ Double-check
         the URL, or you
-        <Link 
-        to="/"
-        className="font-bold underline text-white hover:text-red-300"
-        > can click here to go back home</Link> and start fresh!”
+        <Link
+          to="/"
+          className="font-bold underline text-white hover:text-red-300"
+        >
+          {" "}
+          can click here to go back home
+        </Link>{" "}
+        and start fresh!”
       </p>
     </div>
   );

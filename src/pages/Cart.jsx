@@ -19,6 +19,8 @@ const Cart = () => {
 
   const Fees = 0;
   const btnName = "CONTINUE TO SHIPPING";
+  const nextStep = "/shipping";
+  const orderHeading="Order Details";
 
   return cartItems.length !== 0 ? (
     <div className="flex ">
@@ -43,6 +45,8 @@ const Cart = () => {
           isLoggedIn={isLoggedIn}
           setRedirectAfterLogin={setRedirectAfterLogin}
           btnName={btnName}
+          nextStep={nextStep}
+          orderHeading={orderHeading}
         />
       </div>
     </div>
@@ -50,10 +54,10 @@ const Cart = () => {
     <div className="flex flex-col justify-center items-center h-84 text-center text-xl font-semibold text-gray-700 m-10">
       <div className="fa-solid fa-cart-arrow-down fa-shake text-black text-8xl p-4 md:block"></div>
 
-      <p className="text-black font-bold text-md">
+      <p className="text-black font-bold text-md fa-fade">
         Your cart is looking a little empty{" "}
         <span>
-          <i className="fa-regular fa-face-frown fa-flip"></i>
+          <i className="fa-regular fa-face-frown"></i>
         </span>
       </p>
 

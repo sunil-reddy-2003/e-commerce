@@ -7,6 +7,7 @@ import SignUp from "./pages/SignUp";
 import Cart from "./pages/Cart";
 import Shipping from "./pages/Shipping";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Payment from "./pages/Payment";
 
 const App = () => {
   return (
@@ -25,6 +26,13 @@ const App = () => {
               </ProtectedRoute>
             }
           ></Route>
+          <Route
+            path="/payment"
+            element={
+              <ProtectedRoute>
+                <Payment/>
+              </ProtectedRoute>
+            }></Route>
         </Route>
 
         <Route path="*" element={<PageNotExist />} />
