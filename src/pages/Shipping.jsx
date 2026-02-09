@@ -2,11 +2,12 @@ import OrderDetails from "../components/OrderDetails";
 import Address from "../components/Address";
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
+import { useEffect } from "react";
 
 const Shipping = (props) => {
   const [showAddressForm, setShowAddressForm] = useState(false);
   const [address, setAddress] = useState({});
-  const [showAddressDetails, setShowAddressDetails] = useState(true);
+  const [showAddressDetails, setShowAddressDetails] = useState(false);
   const { cartItems } = useOutletContext();
 
   const [formMode, setFormMode] = useState("");
@@ -23,8 +24,24 @@ const Shipping = (props) => {
   });
 
   const addressDetails = (payload) => {
-    setAddress({ ...payload });
+    window.localStorage.setItem("addressStorage", JSON.stringify(payload));
+    setAddress(payload );
+    setShowAddressDetails(true);
   };
+
+  useEffect(() => {
+    const savedAddress = JSON.parse(localStorage.getItem("addressStorage"));
+    if (savedAddress) {
+      console.log("true");
+      setAddress(savedAddress);
+      setShowAddressDetails(true);
+      console.log("showAddressDetails",showAddressDetails);
+    }else {
+      console.log("false");
+    setShowAddressDetails(false); 
+  }
+  }, []);
+
   const months = [
     "January",
     "February",
@@ -67,7 +84,7 @@ const Shipping = (props) => {
                 </p>
               </div>
             </div>
-            {showAddressDetails && (
+            {!showAddressDetails && (
               <div className=" px-4">
                 <button
                   className="font-bold text-green-600 cursor-pointer hover:text-black"
@@ -81,7 +98,7 @@ const Shipping = (props) => {
               </div>
             )}
           </div>
-          {!showAddressDetails && (
+          {showAddressDetails && (
             <div className="flex gap-130">
               <div className="px-4">
                 <div className="flex gap-1">
@@ -146,7 +163,7 @@ const Shipping = (props) => {
           )}
         </div>
 
-        {!showAddressDetails && (
+        {showAddressDetails && (
           <div className="flex flex-col py-4 px-4 ">
             <div className="flex items-center gap-4">
               <i className="fa-regular fa-truck text-3xl "></i>

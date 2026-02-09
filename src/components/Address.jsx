@@ -28,7 +28,6 @@ const Address = (props) => {
 
           const payload = { ...formData, addressType, isDefault };
           addressDetails(payload);
-          setShowAddressDetails(false);
           setShowAddressForm(false);
         }}
       >

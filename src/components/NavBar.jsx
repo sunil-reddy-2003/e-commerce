@@ -23,7 +23,7 @@ const NavBar = (props) => {
         to="."
         className="flex items-center text-2xl font-bold gap-2 flex-shrink-0 "
       >
-        <i className="fa-brands fa-atlassian fa-flip"></i>
+        <i className="fa-brands fa-atlassian"></i>
         <span>Amazon</span>
       </Link>
 
