@@ -8,13 +8,12 @@ const Layout = () => {
   const [searchText, setSearchText] = useState("");
   const [cartItems, setCartItems] = useState([]);
   const [orders, setOrders] = useState([]);
+  const [address, setAddress] = useState({});
 
   useEffect(() => {
     const savedOrders = JSON.parse(localStorage.getItem("orders")) || [];
     setOrders(savedOrders);
   }, []);
-
-  
 
   const addToCart = (product) => {
     setCartItems((prevCart) => {
@@ -59,28 +58,49 @@ const Layout = () => {
   const totalItems = cartItems.reduce((sum, item) => {
     return (sum += item.quantity);
   }, 0);
-  const orderComplete = () => {
+
+  const paymentLabels = {
+    cod: "Cash on Delivery",
+    creditCard: "Credit/Debit Card",
+    upi: "UPI",
+    netBanking: "Net Banking",
+    wallet: "Wallet",
+    emi: "EMI",
+  };
+
+  const priceDetails = {
+    fees: 0,
+    totalPrice: totalPrice,
+    quantity: totalItems,
+  };
+
+  const orderComplete = (paymentMethod) => {
+    const date = new Date();
+    const dateArr = date.toDateString().split(" ");
+    const uniqueId = "SUPE" + Date.now();
+    console.log(uniqueId);
+    const newOrder = {
+      orderId: uniqueId,
+      items: cartItems,
+      priceDetails: priceDetails,
+      status: "PLACED",
+      paymentMethod: paymentLabels[paymentMethod],
+      address: address,
+      date: dateArr[2] + " " + dateArr[1] + " " + dateArr[3],
+    };
+
     setOrders((prevOrders) => {
-      const uniqueId = "SUPE" + Math.floor(Math.random() * 100000);
-
-      const newOrder = {
-        orderId: uniqueId,
-        items: cartItems,
-        quantity: totalItems,
-        price: totalPrice,
-      };
       const updatedOrders = [...prevOrders, newOrder];
-
       localStorage.setItem("orders", JSON.stringify(updatedOrders));
       return updatedOrders;
     });
+
     setCartItems([]);
   };
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-r from-black/20 via-black/50 to-black/20">
-      <NavBar 
-        onSearch={setSearchText}
-        cartTotal={totalItems}/>
+      <NavBar onSearch={setSearchText} cartTotal={totalItems} />
       <main className="flex-1 ">
         <Outlet
           context={{
@@ -92,6 +112,8 @@ const Layout = () => {
             deleteItem,
             orderComplete,
             orders,
+            address,
+            setAddress,
           }}
         />
       </main>

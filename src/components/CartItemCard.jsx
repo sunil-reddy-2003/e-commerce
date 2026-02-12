@@ -1,12 +1,12 @@
 const CartItemCard = (props) => {
   const { product, onIncrease, onDecrease, onDelete } = props;
   return (
-    <div className="bg-black/70 backdrop-blur-xs mb-2 rounded-md">
+    <div className="bg-white/20 backdrop-blur-xs mb-2 rounded-md hover:bg-black/30">
       <div className="flex">
         <div className="mr-2 w-[20%] p-2">
           <img
             src={product.photo}
-            className="h-50 w-50 object-cover border border-white rounded-sm"
+            className="h-50 w-50 object-cover border border-white/20 rounded-sm"
           />
         </div>
         <div className="flex flex-col justify-between mr-2 w-[70%] p-4">

@@ -6,9 +6,8 @@ import { useEffect } from "react";
 
 const Shipping = (props) => {
   const [showAddressForm, setShowAddressForm] = useState(false);
-  const [address, setAddress] = useState({});
   const [showAddressDetails, setShowAddressDetails] = useState(false);
-  const { cartItems } = useOutletContext();
+  const { cartItems ,address,setAddress } = useOutletContext();
 
   const [formMode, setFormMode] = useState("");
 
@@ -69,11 +68,11 @@ const Shipping = (props) => {
   const nextStep = "/payment";
   return (
     <div className="flex gap-4  p-2 relative">
-      <div className="ml-28 p-8 w-[75%] bg-white/30">
-        <div className=" flex flex-col ">
+      <div className=" p-8 w-[75%] ">
+        <div className=" flex flex-col bg-white/30 rounded-t-lg">
           <div className=" py-6 px-2 ">
-            <div className="flex">
-              <i className="fa-solid fa-location-dot text-4xl p-2"></i>
+            <div className="flex px-8">
+              <i className="fa-solid fa-location-dot text-4xl "></i>
               <div>
                 <h2 className="text-2xl font-bold">Delivery Address</h2>
                 <p className="font-light">
@@ -82,7 +81,7 @@ const Shipping = (props) => {
               </div>
             </div>
             {!showAddressDetails && (
-              <div className=" px-4">
+              <div className=" px-8">
                 <button
                   className="font-bold text-green-600 cursor-pointer hover:text-black"
                   onClick={() => {
@@ -96,9 +95,9 @@ const Shipping = (props) => {
             )}
           </div>
           {showAddressDetails && (
-            <div className="flex gap-130 border-b border-gray-400 pb-4">
-              <div className="px-4">
-                <div className="flex gap-1">
+            <div className="flex items-center justify-between px-8 py-2">
+              <div className="px-6">
+                <div className="flex">
                   <h3 className="font-bold pr-2 text-[15px]">{address.name}</h3>
                   <div className="border px-2 rounded-lg text-xs">
                     {address.addressType}
@@ -145,10 +144,9 @@ const Shipping = (props) => {
                   </button>
                 </div>
               </div>
-              <div className="flex items-center">
+              <div className="flex items-center pr-16">
                 <div className="border border-dotted p-4">
                   <p className="text-green-700 font-bold ">
-                    {" "}
                     Cash on delivery available
                   </p>
                   <p>
@@ -161,8 +159,8 @@ const Shipping = (props) => {
         </div>
 
         {showAddressDetails && (
-          <div className="flex flex-col py-4 px-4 ">
-            <div className="flex items-center gap-4">
+          <div className="flex flex-col py-2 px-10 bg-white/30 rounded-b-lg border-t border-gray-200 ">
+            <div className="flex items-center gap-4 ">
               <i className="fa-regular fa-truck text-3xl "></i>
               <div>
                 <h2 className="text-xl text-black font-bold">

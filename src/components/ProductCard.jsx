@@ -3,12 +3,12 @@ const ProductCard = (props) => {
   const { product } = props;
   const { addToCart } = useOutletContext();
   return (
-    <div className="flex flex-col justify-center items-center  border-white text-black p-2">
+    <div className="flex flex-col justify-center items-center border border-white/40 text-black p-2 rounded-lg hover:bg-purple-100">
       {" "}
       {/*border-[1px] rounded-4xl  transition delay-50 duration-600 ease-in-out hover:-translate-y-1 hover:scale-110  */}
       <img
         src={product.photo}
-        className="w-80 h-80 object-cover border-2 border-black rounded-xl"
+        className="w-70 h-70 object-cover border-2 border-black rounded-xl"
       />
       <div className="text-lg font-bold">{product.name}</div>
       <div className="text-lg font-bold">₹{product.price}</div>

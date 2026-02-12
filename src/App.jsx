@@ -10,7 +10,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Payment from "./pages/Payment";
 import OrderSuccess from "./pages/OrderSuccess";
 import Orders from "./pages/Orders";
-import Profile  from "./pages/Profile";
+import Profile from "./pages/Profile";
+import OrderInfo from "./components/OrderInfo";
 
 const App = () => {
   return (
@@ -50,6 +51,14 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <Orders />
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route
+            path="/orders/:orderId"
+            element={
+              <ProtectedRoute>
+                <OrderInfo />
               </ProtectedRoute>
             }
           ></Route>

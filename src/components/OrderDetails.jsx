@@ -18,7 +18,7 @@ const OrderDetails = (props) => {
   // const [showAmtPybl,setShowAmtPybl]=useState(false);
 
   return (
-    <div className="sticky top-20 p-8 bg-linear-to-r from-black/60 to-black/80">
+    <div className="sticky top-20 p-8 bg-linear-to-r from-black/40 to-black/60">
       <h2 className="font-bold text-2xl mb-4">{orderHeading}</h2>
       <div className="flex justify-between mb-2 text-white">
         <span>MRP</span>

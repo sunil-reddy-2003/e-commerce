@@ -28,11 +28,11 @@ const Payment = () => {
   });
   return (
     <div className=" flex ">
-      <div className=" flex flex-col py-8 pl-30 pr-16 w-[75%]">
-        <div className="px-16 py-4 font-bold text-xl text-white bg-linear-to-r from-green-800  to-green-400 mb-2">
+      <div className=" flex flex-col w-[75%] m-8 ">
+        <div className="p-8 font-black text-xl text-white bg-linear-to-r from-green-800  to-green-400 rounded-t-lg">
           <p>SELECT PAYMENT METHOD</p>
         </div>
-        <div className="flex relative w-full bg-slate-800 ">
+        <div className="flex relative w-full bg-slate-800 rounded-b-lg">
           <ul className=" flex flex-col w-1/3  font-light text-xl cursor-pointer">
             <li
               className=" px-16 py-2 bg-black/60 text-white hover:-translate-y-1 hover:scale-100 hover:duration-300 hover:bg-purple-500 hover:text-white"
@@ -71,7 +71,6 @@ const Payment = () => {
               Cash on delivery
             </li>
           </ul>
-          {/* <div className="border bg-red  w-2/3 bg-white px-20"></div> */}
           {selectedPaymentMethod === "creditCard" && (
             <div className="flex flex-col items-center justify-center  w-2/3">
               <p className="flex text-xl font-semi-bold text-white">
@@ -123,13 +122,14 @@ const Payment = () => {
             </div>
           )}
           {selectedPaymentMethod === "cod" && (
-            <div className="flex flex-col items-center justify-center  w-2/3 border">
+            <div className="flex flex-col items-center justify-center  w-2/3 ">
               <p className="font-bold text-2xl text-white">Click to pay on delivery</p>
               <button
                 disabled={btnState}
                 className={`border rounded-md px-4 py-2 bg-green-600 text-white ${btnState ? "cursor-not-allowed" : "hover:bg-black"}`}
                 onClick={() => {
-                  orderComplete();
+                  if (btnState) return; 
+                  orderComplete(selectedPaymentMethod);
                   setBtnState(true);
                   navigate("/order-success");
                 }}
