@@ -3,19 +3,12 @@ import { useNavigate, useOutletContext } from "react-router-dom";
 import { useState } from "react";
 
 const Payment = () => {
-  const { cartItems, createOrder } = useOutletContext();
+  const { totalPrice, createOrder} = useOutletContext();
   const navigate = useNavigate();
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState("cod");
   const [btnState, setBtnState] = useState(false);
 
-  const Fees = 0;
-  const totalPrice = cartItems.reduce((sum, item) => {
-    return (sum += item.price * item.quantity);
-  }, 0);
-  const totalItems = cartItems.reduce((sum, item) => {
-    return (sum += item.quantity);
-  }, 0);
   const orderHeading = "Order Summary";
   const btnName = "amount payable";
 
@@ -143,9 +136,6 @@ const Payment = () => {
       </div>
       <div className=" relative  py-8 pr-4 w-[25%]">
         <OrderDetails
-          Fees={Fees}
-          totalPrice={totalPrice}
-          totalItems={totalItems}
           orderHeading={orderHeading}
           btnName={btnName}
           showAmtPybl={true}

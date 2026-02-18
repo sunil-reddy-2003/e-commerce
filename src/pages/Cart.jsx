@@ -5,19 +5,11 @@ import { useNavigate } from "react-router-dom";
 import OrderDetails from "../components/OrderDetails";
 
 const Cart = () => {
-  const { cartItems, increaseQty, decreaseQty, deleteItem } =
+  const { cartItems, increaseQty, decreaseQty, deleteItem} =
     useOutletContext();
   const { isLoggedIn, setRedirectAfterLogin } = useAuth();
   const navigate = useNavigate();
 
-  const totalPrice = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
-
-  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-
-  const Fees = 0;
   const btnName = "CONTINUE TO SHIPPING";
   const nextStep = "/shipping";
   const orderHeading="Order Details";
@@ -39,9 +31,6 @@ const Cart = () => {
       </div>
       <div className="relative py-8 pr-4 w-[25%]">
         <OrderDetails
-          totalPrice={totalPrice}
-          totalItems={totalItems}
-          Fees={Fees}
           isLoggedIn={isLoggedIn}
           setRedirectAfterLogin={setRedirectAfterLogin}
           btnName={btnName}

@@ -1,16 +1,23 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useCallback, useState, useEffect } from "react";
+import { Link,useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { debounce } from "lodash";
 
 const NavBar = (props) => {
   const { onSearch, cartTotal } = props;
   const [open, setOpen] = useState(false);
   const [profile, setProfile] = useState(false);
   const { isLoggedIn, setIsLoggedIn } = useAuth();
+  const navigate=useNavigate();
 
   const profileClick = () => {
     setProfile((prev) => !prev);
   };
+
+  const handleSearch = useCallback(
+    debounce((value) => { onSearch(value); }, 300),
+    [onSearch]
+  );
 
   return (
     <nav className="sticky top-0 z-50 bg-gradient-to-r from-black/100 via-black/60 to-black/80 backdrop-blur-xs shadow-xl flex items-center justify-between px-14 py-4  rounded-full my-2 mx-4 text-white">
@@ -40,7 +47,7 @@ const NavBar = (props) => {
           aria-label="Search for products"
           className="border-2  md:w-3/6 p-2 rounded-full"
           onInput={(e) => {
-            onSearch(e.target.value);
+            handleSearch(e.target.value);
           }}
         ></input>
         {/* <i className="absolute fa-solid fa-magnifying-glass text-2xl  "></i> */}
@@ -142,6 +149,7 @@ const NavBar = (props) => {
                 profileClick();
                 setIsLoggedIn(false);
                 localStorage.clear();
+                navigate("/log-in");
               }}
             >
               Log out

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
-const OrderCard = (props) => {
-  const { order, date, month, year } = props;
+import React from "react";
+const OrderCard = React.memo((props) => {
+  const { order } = props;
   const navigate = useNavigate();
   return (
     <div
@@ -12,7 +13,7 @@ const OrderCard = (props) => {
       <div className="flex items-center justify-between px-8 rounded-t-lg  backdrop-blur-xl  bg-white/60  ">
         <div className=" ">
           <p className="text-lg  font-bold pt-2">Order Placed on</p>
-          <p className="text-md">{date + " " + month + " " + year}</p>
+          <p className="text-md">{order.date}</p>
         </div>
         <p className="text-lg   ">
           Order Id <span className="font-semibold underline decoration-dotted">{order.orderId}</span>
@@ -21,21 +22,20 @@ const OrderCard = (props) => {
       <div className="flex flex-col px-8 py-4  bg-black/10 rounded-b-lg">
         <p className="text-md flex  gap-4">
           <span>Price : </span>
-          <span>₹{order.priceDetails.totalPrice}</span>
+          <span>₹{order.totalPrice}</span>
         </p>
 
         <p className="text-md flex gap-4">
           <span>Items : </span>
-          <span>{order.priceDetails.quantity}</span>
+          <span>{order.totalQuantity}</span>
         </p>
 
         <p className="text-md flex gap-4">
           <span>Status : </span>
-          <span>{order.status}</span>
+          <span>{order.orderStatus}</span>
         </p>
       </div>
     </div>
   );
-};
-
+});
 export default OrderCard;

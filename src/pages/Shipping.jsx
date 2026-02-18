@@ -58,14 +58,6 @@ const Shipping = () => {
   const date = new Date();
   date.setDate(date.getDate() + 7);
 
-  const Fees = 0;
-  const totalPrice = cartItems.reduce((sum, item) => {
-    return (sum += item.price * item.quantity);
-  }, 0);
-
-  const totalItems = cartItems.reduce((sum, item) => {
-    return (sum += item.quantity);
-  }, 0);
 
   const btnName = "PROCEED TO PAYMENT";
   const orderHeading = "Order Details";
@@ -217,9 +209,6 @@ const Shipping = () => {
       </div>
       <div className="relative  py-8 pr-4 w-[25%]">
         <OrderDetails
-          Fees={Fees}
-          totalPrice={totalPrice}
-          totalItems={totalItems}
           btnName={btnName}
           address={address}
           nextStep={nextStep}

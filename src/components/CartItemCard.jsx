@@ -1,4 +1,5 @@
-const CartItemCard = (props) => {
+import React from "react";
+const CartItemCard = React.memo((props) => {
   const { product, onIncrease, onDecrease, onDelete } = props;
   return (
     <div className="bg-white/20 backdrop-blur-xs mb-2 rounded-md hover:bg-black/30">
@@ -57,5 +58,5 @@ const CartItemCard = (props) => {
       </div>
     </div>
   );
-};
+})
 export default CartItemCard;

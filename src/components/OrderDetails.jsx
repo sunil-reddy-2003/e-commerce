@@ -1,9 +1,6 @@
 import { useNavigate,useOutletContext } from "react-router-dom";
 const OrderDetails = (props) => {
   const {
-    totalPrice,
-    totalItems,
-    Fees,
     isLoggedIn,
     setRedirectAfterLogin,
     btnName,
@@ -14,6 +11,7 @@ const OrderDetails = (props) => {
   } = props;
 
   const navigate = useNavigate();
+  const {totalItems,totalPrice,fees}=useOutletContext();
   // const [showAmtPybl,setShowAmtPybl]=useState(false);
 
   return (
@@ -25,7 +23,7 @@ const OrderDetails = (props) => {
       </div>
       <div className="flex justify-between mb-2 text-white">
         <span>Fees</span>
-        <span>₹{Fees}</span>
+        <span>₹{fees}</span>
       </div>
       <div className="flex justify-between mb-2 text-white">
         <span>Total Items</span>

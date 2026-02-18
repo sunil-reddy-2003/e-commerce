@@ -1,5 +1,6 @@
 import { useOutletContext } from "react-router-dom";
-const ProductCard = (props) => {
+import React from "react";
+const ProductCard = React.memo((props) => {
   const { product } = props;
   const { addToCart } = useOutletContext();
   return (
@@ -25,6 +26,6 @@ const ProductCard = (props) => {
       </button>
     </div>
   );
-};
+})
 
 export default ProductCard;
