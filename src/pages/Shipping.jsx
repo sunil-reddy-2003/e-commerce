@@ -1,7 +1,7 @@
 import OrderDetails from "../components/OrderDetails";
 import Address from "../components/Address";
 import { useState } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext,Link } from "react-router-dom";
 import { useEffect } from "react";
 
 const Shipping = () => {
@@ -31,6 +31,16 @@ const Shipping = () => {
     setShowAddressDetails(true);
   };
 
+  if (!cartItems.length) {
+    return (
+      <div className="flex flex-col items-center justify-center text-black h-90 text-4xl font-bold tracking-widest">
+        <h1>Looks like your cart is empty...</h1>
+        <Link to="/" className="text-lg underline text-red-700 tracking-wide">
+          Start shopping now!
+        </Link>
+      </div>
+    );
+  }
   useEffect(() => {
     const savedAddress = JSON.parse(localStorage.getItem("addressStorage"));
     if (savedAddress) {
@@ -57,7 +67,6 @@ const Shipping = () => {
   ];
   const date = new Date();
   date.setDate(date.getDate() + 7);
-
 
   const btnName = "PROCEED TO PAYMENT";
   const orderHeading = "Order Details";
@@ -95,8 +104,8 @@ const Shipping = () => {
                       state: "",
                     });
 
-                    setDefaultState(true); 
-                    setAddressType("Home"); 
+                    setDefaultState(true);
+                    setAddressType("Home");
 
                     setShowAddressForm(true);
                   }}

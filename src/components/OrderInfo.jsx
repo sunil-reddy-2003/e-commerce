@@ -28,7 +28,7 @@ const OrderInfo = () => {
     getOrder();
   }, []);
 
-  if (loading) return <div className="flex items-center justify-center h-90 text-5xl font-bold text-white">Loading order details...</div>;
+  if (loading) return <div className="flex items-center justify-center h-90 text-5xl font-bold text-white">Loading order Information...</div>;
 
 
   return (

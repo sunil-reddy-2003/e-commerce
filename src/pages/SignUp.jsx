@@ -27,13 +27,13 @@ const SignUp = () => {
   };
 
   return (
-    <div className="md:flex  mx-4 my-2">
-      <div className="hidden md:flex justify-center items-center md:w-[55%]  rounded-l-md  bg-fuchsia-900 ">
+    <div className="md:flex ">
+      <div className="hidden md:flex justify-center items-center md:w-[55%]   bg-fuchsia-900 ">
         <p className="font-extrabold text-white text-4xl">
           Sign up. Show up. Level up
         </p>
       </div>
-      <div className=" w-full md:w-[45%]  rounded-r-md bg-gray-800">
+      <div className=" w-full md:w-[45%]  bg-gray-800">
         <form
           className="flex flex-col  text-white h-full p-12 md:px-32"
           onSubmit={(e) => {

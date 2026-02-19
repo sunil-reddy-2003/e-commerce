@@ -1,5 +1,5 @@
 import { useCallback, useState, useEffect } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { debounce } from "lodash";
 
@@ -8,19 +8,38 @@ const NavBar = (props) => {
   const [open, setOpen] = useState(false);
   const [profile, setProfile] = useState(false);
   const { isLoggedIn, setIsLoggedIn } = useAuth();
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
-  const profileClick = () => {
-    setProfile((prev) => !prev);
-  };
 
   const handleSearch = useCallback(
-    debounce((value) => { onSearch(value); }, 300),
-    [onSearch]
+    debounce((value) => {
+      onSearch(value);
+    }, 300),
+    [onSearch],
   );
+  const profileObj=[
+    {
+      label:"Profile",
+      route:"/profile"
+    },
+    {
+      label:"My Orders",
+      route:"/orders"
+    },
+    {
+      label:"Wallet",
+      route:"/"
+    },
+    {
+      label:"Logout",
+      route:"/log-in",
+      action:"Logout"
+    },
+  ]
 
   return (
-    <nav className="sticky top-0 z-50 bg-gradient-to-r from-black/100 via-black/60 to-black/80 backdrop-blur-xs shadow-xl flex items-center justify-between px-14 py-4  rounded-full my-2 mx-4 text-white">
+    // mt-2 mx-4 rounded-full
+    <nav className="sticky flex items-center justify-between top-0 z-50 bg-gradient-to-r from-black/100 via-black/60 to-black/80 backdrop-blur-sm  px-14 py-6  text-white">
       <button
         onClick={() => setOpen((prev) => !prev)}
         className="md:hidden"
@@ -87,13 +106,15 @@ const NavBar = (props) => {
           <button
             className="fa-solid fa-circle-user font-bold text-3xl cursor-pointer"
             aria-label="Account menu"
-            onClick={profileClick}
+            onClick={()=>
+              setProfile((prev) => !prev)
+            }
           ></button>
         ) : (
           <div className="flex justify-center items-center gap-4 font-bold flex-shrink-0 ">
             <Link
               to="/log-in"
-              className="hidden md:block border-2 rounded-full px-3 py-2 cursor-pointer hover:bg-black hover:text-white"
+              className="hidden md:block border-2 rounded-full px-3 py-2 cursor-pointer hover:bg-green-500 hover:text-black"
             >
               Log in
             </Link>
@@ -108,52 +129,37 @@ const NavBar = (props) => {
       </div>
 
       {profile && (
-        <div className="absolute flex flex-col  w-[200px] bg-white/90 shadow-lg top-20 right-14 ">
-          <div className="flex items-center justify-between bg-black p-2 border">
-            <h1 className="font-bold text-2xl text-white ">
-              My Account
-            </h1>
-            <i
-              className="text-xl fa-regular fa-circle-xmark cursor-pointer text-red-600 hover:text-green-600"
-              onClick={profileClick}
-            ></i>
-          </div>
-          <div className="flex flex-col items-stretch text-black text-lg font-mono text-left">
-            <Link
-              to="/profile"
-              className="hover:bg-gray-600 px-4"
-              onClick={profileClick}
-            >
-              {" "}
-              Profile
-            </Link>
-            <Link
-              to="/orders"
-              className="hover:bg-gray-600 px-4"
-              onClick={profileClick}
-            >
-              {" "}
-              My orders
-            </Link>
-            <Link
-              to="/profile"
-              className="hover:bg-gray-600 px-4"
-              onClick={profileClick}
-            >
-              Wallet balance
-            </Link>
-
-            <button
-              className="bg-green-500 hover:bg-red-700 text-left font-bold px-4"
-              onClick={() => {
-                profileClick();
-                setIsLoggedIn(false);
-                localStorage.clear();
-                navigate("/log-in");
-              }}
-            >
-              Log out
-            </button>
+        <div className="fixed top-0 right-0 h-screen flex justify-end  bg-white/30 backdrop-blur-xl w-full">
+          <div className="shadow-xl bg-white w-[20%]">
+            <div className="flex items-center justify-between bg-black p-4 h-20">
+              <h1 className="font-bold text-3xl text-white ">My Account</h1>
+              <i
+                className="text-2xl fa-regular fa-circle-xmark cursor-pointer text-red-600 hover:text-green-600"
+                onClick={()=>
+                  setProfile(false)}
+              ></i>
+            </div>
+            <ul className="text-black font-bold">
+              
+              {
+                profileObj.map((item)=>{
+                  return <li 
+                    className={item.action?"text-lg px-4 py-2 mb-1 hover:bg-red-400" :"text-lg px-4 py-2 mb-1 hover:bg-gray-400" }
+                    key={item.label}
+                    onClick={
+                      ()=>{
+                        if(item.action){
+                          localStorage.clear();
+                          setIsLoggedIn(false); 
+                        }
+                        navigate(item.route);
+                        setProfile(false);
+                      }
+                    }
+                    >{item.label}</li>
+                })
+              }
+            </ul>
           </div>
         </div>
       )}

@@ -1,16 +1,23 @@
 import OrderDetails from "../components/OrderDetails";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext, Link } from "react-router-dom";
 import { useState } from "react";
 
 const Payment = () => {
-  const { totalPrice, createOrder} = useOutletContext();
+  const { totalPrice, createOrder, cartItems } = useOutletContext();
   const navigate = useNavigate();
-  const [selectedPaymentMethod, setSelectedPaymentMethod] =
-    useState("cod");
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("Cash on Delivery");
   const [btnState, setBtnState] = useState(false);
 
   const orderHeading = "Order Summary";
   const btnName = "amount payable";
+  const paymentModes = [
+    "Cash on Delivery",
+    "Credit/Debit Card",
+    "UPI",
+    "Net Banking",
+    "Wallet",
+    "EMI",
+  ];
 
   const [cardFormValues, setCardFormValues] = useState({
     cardNumber: "",
@@ -20,6 +27,28 @@ const Payment = () => {
     cvv: "",
   });
 
+  if (!cartItems.length) {
+    return (
+      <div className="flex flex-col items-center justify-center text-black h-90 text-4xl font-bold tracking-widest">
+        <h1>Looks like your cart is empty...</h1>
+        <Link to="/" className="text-lg underline text-red-700 tracking-wide">
+          Start shopping now!
+        </Link>
+      </div>
+    );
+  }
+
+  const paymentRequest = async () => {
+    if (!cartItems.length) return;
+    setBtnState(true);
+    const response = await createOrder(selectedPaymentMethod);
+    if (response) {
+      navigate("/order-success");
+    } else {
+      setBtnState(false);
+    }
+  };
+
   return (
     <div className=" flex ">
       <div className=" flex flex-col w-[75%] m-8 ">
@@ -28,44 +57,17 @@ const Payment = () => {
         </div>
         <div className="flex relative w-full bg-slate-800 rounded-b-lg">
           <ul className=" flex flex-col w-1/3  font-light text-xl cursor-pointer">
-            <li
-              className=" px-16 py-2 bg-black/60 text-white hover:-translate-y-1 hover:scale-100 hover:duration-300 hover:bg-purple-500 hover:text-white"
-              onClick={() => setSelectedPaymentMethod("creditCard")}
-            >
-              Credit/ Debit Card
-            </li>
-            <li
-              className=" px-16 py-2  bg-black/60 text-white hover:-translate-y-2 hover:duration-300 hover:bg-purple-500 hover:text-white"
-              onClick={() => setSelectedPaymentMethod("netBanking")}
-            >
-              NetBanking
-            </li>
-            <li
-              className=" px-16 py-2 bg-black/60 text-white hover:-translate-y-2 hover:duration-300 hover:bg-purple-500 hover:text-white"
-              onClick={() => setSelectedPaymentMethod("wallet")}
-            >
-              Wallet
-            </li>
-            <li
-              className=" px-16 py-2 bg-black/60 text-white hover:-translate-y-2 hover:duration-300 hover:bg-purple-500 hover:text-white"
-              onClick={() => setSelectedPaymentMethod("upi")}
-            >
-              UPI
-            </li>
-            <li
-              className=" px-16 py-2 bg-black/60 text-white hover:-translate-y-2 hover:duration-300 hover:bg-purple-500 hover:text-white"
-              onClick={() => setSelectedPaymentMethod("emi")}
-            >
-              EMI
-            </li>
-            <li
-              className=" px-16 py-2 bg-black/60 text-white hover:-translate-y-2 hover:duration-300 hover:bg-purple-500 hover:text-white"
-              onClick={() => setSelectedPaymentMethod("cod")}
-            >
-              Cash on delivery
-            </li>
+            {paymentModes.map((mode) => {
+              return <li
+                className=" px-16 py-2 bg-black/60 text-white hover:-translate-y-1 hover:scale-100 hover:duration-300 hover:bg-purple-500 hover:text-white"
+                onClick={() => setSelectedPaymentMethod(mode)}
+                key={mode}
+              >
+                {mode}
+              </li>;
+            })}
           </ul>
-          {selectedPaymentMethod === "creditCard" && (
+          {selectedPaymentMethod === "Credit/Debit Card" && (
             <div className="flex flex-col items-center justify-center  w-2/3">
               <p className="flex text-xl font-semi-bold text-white">
                 Sorry for the inconvenience...
@@ -75,7 +77,7 @@ const Payment = () => {
               </p>
             </div>
           )}
-          {selectedPaymentMethod === "netBanking" && (
+          {selectedPaymentMethod === "Net Banking" && (
             <div className="flex flex-col items-center justify-center  w-2/3">
               <p className="flex text-xl font-semi-bold text-white">
                 Sorry for the inconvenience...
@@ -85,7 +87,7 @@ const Payment = () => {
               </p>
             </div>
           )}
-          {selectedPaymentMethod === "wallet" && (
+          {selectedPaymentMethod === "Wallet" && (
             <div className="flex flex-col items-center justify-center  w-2/3">
               <p className="flex text-xl font-semi-bold text-white">
                 Sorry for the inconvenience...
@@ -95,7 +97,7 @@ const Payment = () => {
               </p>
             </div>
           )}
-          {selectedPaymentMethod === "upi" && (
+          {selectedPaymentMethod === "UPI" && (
             <div className="flex flex-col items-center justify-center  w-2/3">
               <p className="flex text-xl font-semi-bold text-white">
                 Sorry for the inconvenience...
@@ -105,7 +107,7 @@ const Payment = () => {
               </p>
             </div>
           )}
-          {selectedPaymentMethod === "emi" && (
+          {selectedPaymentMethod === "EMI" && (
             <div className="flex flex-col items-center justify-center  w-2/3">
               <p className="flex text-xl font-semi-bold text-white">
                 Sorry for the inconvenience...
@@ -115,17 +117,17 @@ const Payment = () => {
               </p>
             </div>
           )}
-          {selectedPaymentMethod === "cod" && (
+          {selectedPaymentMethod === "Cash on Delivery" && (
             <div className="flex flex-col items-center justify-center  w-2/3 ">
-              <p className="font-bold text-2xl text-white">Click to pay on delivery</p>
+              <p className="font-bold text-2xl text-white">
+                Click to pay on delivery
+              </p>
               <button
                 disabled={btnState}
                 className={`border rounded-md px-4 py-2 bg-green-600 text-white ${btnState ? "cursor-not-allowed" : "hover:bg-black"}`}
                 onClick={() => {
-                  if (btnState) return; 
-                  createOrder(selectedPaymentMethod);
-                  setBtnState(true);
-                  navigate("/order-success");
+                  if (btnState) return;
+                  paymentRequest();
                 }}
               >
                 CONFIRM ORDER OF ₹{totalPrice}

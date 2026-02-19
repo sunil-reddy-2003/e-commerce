@@ -20,7 +20,7 @@ const LogIn = () => {
       localStorage.setItem("token",request.data.token);
 
       setUser(request.data.userInfo);
-      
+
       setIsLoggedIn(true);
       if (redirectAfterLogin) {
         navigate(redirectAfterLogin);
@@ -34,14 +34,14 @@ const LogIn = () => {
   };
 
   return (
-    <div className="h-screen flex my-2 mx-4 ">
+    <div className="flex  h-screen  ">
       {/* Left Side */}
-      <div className="hidden md:flex w-[55%]  border-l-2 rounded-l-md bg-purple-900 items-center justify-center italic font-extrabold text-white text-4xl">
+      <div className="hidden md:flex w-[55%]    bg-purple-900 items-center justify-center italic font-extrabold text-white text-4xl">
         "From cart to heart – the journey matters"
       </div>
 
       {/* Right Side */}
-      <div className="w-full md:w-[45%] border-r-2 rounded-r-md bg-gray-800 flex items-center justify-center">
+      <div className="w-full md:w-[45%]  bg-gray-800 flex items-center justify-center">
         <form
           className="w-full max-w-md px-6 py-10"
           onSubmit={(e) => {

@@ -1,12 +1,15 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import { useState, useMemo, useCallback } from "react";
 import BackToTop from "../components/BackToTop";
+import { useState, useMemo, useCallback } from "react";
+
 import axios from "axios";
 
 const Layout = () => {
   const [searchText, setSearchText] = useState("");
+
+
   const [cartItems, setCartItems] = useState([]);
   const [address, setAddress] = useState({});
 
@@ -46,14 +49,7 @@ const Layout = () => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   }, []);
 
-    const paymentLabels = {
-    cod: "Cash on Delivery",
-    creditCard: "Credit/Debit Card",
-    upi: "UPI",
-    netBanking: "Net Banking",
-    wallet: "Wallet",
-    emi: "EMI",
-  };
+    
 
   const createOrder = useCallback(
     async (selectedPaymentMethod) => {
@@ -63,7 +59,7 @@ const Layout = () => {
     const newOrder = {
       orderItem: products,
       address: address,
-      paymentMethod: paymentLabels[selectedPaymentMethod],
+      paymentMethod: selectedPaymentMethod,
     };
 
     try {
@@ -77,11 +73,12 @@ const Layout = () => {
         },
       );
       setCartItems([]);
-      console.log("Order created with id:", response.data);
+      return true;
     } catch (error) {
       console.error("Error creating order:", error);
+      return false;
     }
-  },[cartItems, address]);
+  },[cartItems, address,paymentLabels]);
 
   const cartTotals = useMemo(() => {
     const totalPrice = cartItems.reduce(
