@@ -1,10 +1,10 @@
 import { useAuth } from "../context/AuthContext";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
-const LogIn = () => {
-  const { setIsLoggedIn, redirectAfterLogin, setRedirectAfterLogin,setUser } =
+const AdminLogin = () => {
+  const { setIsAdmin } =
     useAuth();
   const navigate = useNavigate();
 
@@ -19,16 +19,8 @@ const LogIn = () => {
       console.log("inside postLogin: ",request.data);
 
       localStorage.setItem("token",request.data.token);
-
-      setUser(request.data.userInfo);
-
-      setIsLoggedIn(true);
-      if (redirectAfterLogin) {
-        navigate(redirectAfterLogin);
-        setRedirectAfterLogin(null);
-      } else {
-        navigate("/");
-      }
+      setIsAdmin(true);
+      navigate("/admin");
     } catch (error) {
       console.error("error while sending request: ", error);
     }
@@ -37,7 +29,7 @@ const LogIn = () => {
   return (
     <div className="flex  h-screen  ">
       {/* Left Side */}
-      <div className="hidden md:flex w-[55%]    bg-purple-900 items-center justify-center italic font-extrabold text-white text-4xl">
+      <div className="hidden md:flex w-[55%]    bg-slate-900 items-center justify-center italic font-extrabold text-white text-4xl">
         "From cart to heart – the journey matters"
       </div>
 
@@ -52,7 +44,7 @@ const LogIn = () => {
           }}
         >
           <h4 className="font-bold text-2xl text-white mb-6 text-left">
-            Log into Amazio
+            Log into Amazio Admin
           </h4>
 
           {/* Email or Mobile number */}
@@ -82,7 +74,7 @@ const LogIn = () => {
 
               peer-placeholder-shown:text-lg"
             >
-              email address
+              admin email address
             </label>
           </div>
 
@@ -113,7 +105,7 @@ const LogIn = () => {
 
               peer-placeholder-shown:text-lg"
             >
-              Password
+             admin Password
             </label>
           </div>
 
@@ -127,20 +119,14 @@ const LogIn = () => {
 
           <button
             type="button"
-            className="w-full rounded-full p-2 mb-3 text-xl text-white bg-purple-800 hover:bg-rose-500 hover:font-bold transition cursor-pointer"
+            className="w-full rounded-full p-2 text-xl text-white bg-fuchsia-800 hover:bg-rose-500 hover:font-bold transition cursor-pointer"
           >
             Forgot password?
           </button>
-          <Link
-            to="/adminlogin"
-            className="px-4 text-sm text-white text-left cursor-pointer underline underline-offset-2 hover:text-green-400"
-          >
-            Looking for admin access??
-          </Link>
         </form>
       </div>
     </div>
   );
 };
 
-export default LogIn;
+export default AdminLogin;

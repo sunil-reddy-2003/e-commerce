@@ -21,7 +21,7 @@ const NavBar = (props) => {
     },
     {
       label: "Wallet",
-      route: "/",
+      route: "/add-product",
     },
     {
       label: "Logout",

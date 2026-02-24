@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
 
   const [user,setUser]=useState(null);
 
-
+  const [isAdmin,setIsAdmin]=useState(false);
 
   return (
     <AuthContext.Provider
@@ -18,7 +18,9 @@ export const AuthProvider = ({ children }) => {
         redirectAfterLogin,
         setRedirectAfterLogin,
         setUser,
-        user
+        user,
+        isAdmin,
+        setIsAdmin
       }}
     >
       {children}

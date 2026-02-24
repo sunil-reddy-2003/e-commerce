@@ -9,7 +9,7 @@ const Pagination = (props) => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-fuchsia-200 via-black/50 to-fuchsia-200 flex justify-center gap-10 py-2">
+    <div className=" bg-gradient-to-r from-fuchsia-200 via-black/50 to-fuchsia-200 flex justify-center gap-10 py-2">
       <button
         className={`text-white px-2   ${currentPage == 0 ? "cursor-not-allowed" : "cursor-pointer"}`}
         onClick={() => setCurrentPage(0)}

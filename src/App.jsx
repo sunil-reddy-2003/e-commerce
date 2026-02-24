@@ -12,6 +12,12 @@ import OrderSuccess from "./pages/OrderSuccess";
 import Orders from "./pages/Orders";
 import Profile from "./pages/Profile";
 import OrderInfo from "./components/OrderInfo";
+import AddProduct from "./pages/AddProduct";
+import AdminLayout from "./layouts/AdminLayout";
+import AdminLogin from "./pages/AdminLogin";
+import AdminContent from "./pages/AdminContent";
+import AdminProtectedRoute from "./components/AdminProtectedRoute";
+import ViewAllProducts from "./pages/ViewAllProducts";
 
 const App = () => {
   return (
@@ -71,6 +77,28 @@ const App = () => {
               </ProtectedRoute>
             }
           ></Route>
+        </Route>
+
+
+        <Route element={<AdminLayout />}>
+          <Route path="/admin" element={
+            <AdminProtectedRoute>
+              <AdminContent/>
+            </AdminProtectedRoute>
+          }></Route>
+          <Route path="/adminlogin" element={<AdminLogin/>}></Route>
+          <Route path="/add-product" element={
+            <AdminProtectedRoute>
+              <AddProduct />
+            </AdminProtectedRoute>
+          }>
+          </Route>
+          <Route path="/viewallproducts" element={
+            <AdminProtectedRoute>
+              <ViewAllProducts />
+            </AdminProtectedRoute>
+          }>
+          </Route>
         </Route>
 
         <Route path="*" element={<PageNotExist />} />
