@@ -1,24 +1,27 @@
 import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import { times } from "lodash";
 
 const LogIn = () => {
-  const { setIsLoggedIn, redirectAfterLogin, setRedirectAfterLogin,setUser } =
+  const { setIsLoggedIn, redirectAfterLogin, setRedirectAfterLogin, setUser } =
     useAuth();
   const navigate = useNavigate();
 
   const [loginData, setLoginData] = useState({ email: "", password: "" });
 
+  const [error, setError] = useState(false);
   const postLogin = async () => {
     try {
       const request = await axios.post(
-        "http://localhost:9090/api/user/login",
+        // "http://localhost:9090/api/user/login",
+        `${import.meta.env.VITE_API_BASE_URL}/api/user/login`,
         loginData,
       );
-      console.log("inside postLogin: ",request.data);
+      console.log("inside postLogin: ", request.data);
 
-      localStorage.setItem("token",request.data.token);
+      localStorage.setItem("token", request.data.token);
 
       setUser(request.data.userInfo);
 
@@ -30,12 +33,34 @@ const LogIn = () => {
         navigate("/");
       }
     } catch (error) {
+      setError(true);
       console.error("error while sending request: ", error);
     }
   };
 
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError(false);
+      }, 1500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
+
+
+
   return (
-    <div className="flex  h-screen  ">
+    <div className="flex  h-screen ">
+
+      {error && (<div className=" w-full absolute top-25 z-1 flex items-center justify-center">
+        <div className=" flex items-center justify-center gap-2  rounded-full bg-white px-10 py-2">
+          <h3 className="text-xl font-semibold text-red-800">Login Failed</h3>
+          <i className="text-2xl fa-regular fa-circle-xmark  text-red-800"></i>
+        </div>
+      </div>)}
+
+
       {/* Left Side */}
       <div className="hidden md:flex w-[55%]    bg-purple-900 items-center justify-center italic font-extrabold text-white text-4xl">
         "From cart to heart – the journey matters"
@@ -43,6 +68,9 @@ const LogIn = () => {
 
       {/* Right Side */}
       <div className="w-full md:w-[45%]  bg-gray-800 flex items-center justify-center">
+
+
+
         <form
           className="w-full max-w-md px-6 py-10"
           onSubmit={(e) => {

@@ -22,7 +22,8 @@ const MainContent = () => {
         // const response = await axios.get(`http://localhost:9090/api/admin/getAllProducts?page=${currentPage}&size=${pageSize}${category.length>0 ? `&category=${category.join(",")}` : ""}`);
         const response = await axios({
           method: "get",
-          url: "http://localhost:9090/api/admin/getAllProducts",
+          // url: "http://localhost:9090/api/admin/getAllProducts",
+          url: `${import.meta.env.VITE_API_BASE_URL}/api/admin/getAllProducts`,
           params: {
             page: currentPage,
             size: pageSize,

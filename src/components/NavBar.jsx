@@ -52,7 +52,7 @@ const NavBar = (props) => {
       </Link>
 
       {/* search bar */}
-      <div className=" hidden md:flex flex-1  mx-6 ">
+      {isLoggedIn && (<div className=" hidden md:flex flex-1  mx-6 ">
         <div className="relative flex items-center w-140 border-2 rounded-full">
           <input
             type="text"
@@ -88,7 +88,7 @@ const NavBar = (props) => {
             <i className="fa-solid fa-magnifying-glass"></i>
           </div>
         </div>
-      </div>
+      </div>)}
 
       {/* Menu */}
       <div

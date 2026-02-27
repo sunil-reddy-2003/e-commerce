@@ -64,7 +64,8 @@ const Layout = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:9090/api/order/createOrder",
+        // "http://localhost:9090/api/order/createOrder",
+        `${import.meta.env.VITE_API_BASE_URL}/api/order/createOrder`,
         newOrder,
         {
           headers: {

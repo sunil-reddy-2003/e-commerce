@@ -20,7 +20,8 @@ const AddProduct = () => {
         try {
             const postProduct = await axios({
                 method: "post",
-                url: "http://localhost:9090/api/admin/addProduct",
+                // url: "http://localhost:9090/api/admin/addProduct",
+                url: `${import.meta.env.VITE_API_BASE_URL}/api/admin/addProduct`,
                 data: productDetails,
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`

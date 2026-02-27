@@ -12,7 +12,8 @@ const Orders = () => {
     const getOrders = async () => {
       try {
         const ordersResponse = await axios.get(
-          `http://localhost:9090/api/order/getOrders/${user.userId}`,
+          // `http://localhost:9090/api/order/getOrders/${user.userId}`,
+          `${import.meta.env.VITE_API_BASE_URL}/api/order/getOrders/${user.userId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`

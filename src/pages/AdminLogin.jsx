@@ -13,7 +13,8 @@ const AdminLogin = () => {
   const postLogin = async () => {
     try {
       const request = await axios.post(
-        "http://localhost:9090/api/user/login",
+        // "http://localhost:9090/api/user/adminlogin",
+        `${import.meta.env.VITE_API_BASE_URL}/api/user/adminlogin`,
         loginData,
       );
       console.log("inside postLogin: ",request.data);

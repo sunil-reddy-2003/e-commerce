@@ -16,7 +16,8 @@ const SignUp = () => {
   const signUpRequest = async () => {
     try {
       const request = await axios.post(
-        "http://localhost:9090/api/user/signup",
+        // "http://localhost:9090/api/user/signup",
+        `${import.meta.env.VITE_API_BASE_URL}/api/user/signup`,
         signUpData,
       );
       console.log("user registered successfylly:", request.data);

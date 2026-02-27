@@ -15,7 +15,7 @@ const AdminContent = () => {
 
 
             {!isAdmin && (<div className="border p-10 rounded-full hover:scale-90 hover:bg-gray-800 duration-1000 transition-all">
-                <h1 className="text-3xl font-bold mb-4">Hello Admin!!</h1>
+                <h1 className="text-3xl font-bold mb-4">Hello User!!</h1>
                 <p className="text-white text-sm tracking-widest w-200">
                     This area is restricted to authorized administrators.
                     Please log in to access the dashboard and manage the platform.

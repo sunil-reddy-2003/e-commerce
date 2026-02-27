@@ -25,7 +25,8 @@ const UpdateProduct = () => {
             try {
                 const responce = await axios({
                     method: "get",
-                    url: `http://localhost:9090/api/admin/getproductbyid/${id}`,
+                    // url: `http://localhost:9090/api/admin/getproductbyid/${id}`,
+                    url: `${import.meta.env.VITE_API_BASE_URL}/api/admin/getproductbyid/${id}`,
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`
                     }
@@ -51,7 +52,8 @@ const UpdateProduct = () => {
         try {
             const prodResp = await axios({
                 method: "put",
-                url: `http://localhost:9090/api/admin/updateProduct/${id}`,
+                // url: `http://localhost:9090/api/admin/updateProduct/${id}`,
+                url: `${import.meta.env.VITE_API_BASE_URL}/api/admin/updateProduct/${id}`,
                 data: productInfo,
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -80,7 +82,15 @@ const UpdateProduct = () => {
     const labelCSS = "absolute top-6 left-8 duration-200 font-extralight peer-focus:-translate-y-4 peer-focus:text-sm peer-focus:text-white peer-focus:tracking-widest peer-not-placeholder-shown:-translate-y-4 peer-not-placeholder-shown:text-sm peer-not-placeholder-shown:text-white peer-not-placeholder-shown:tracking-widest peer-placeholder-shown:text-xl peer-placeholder-shown:text-black"
     return (
         <div className="flex items-center justify-center min-h-screen bg-linear-to-r from-gray-800  to-gray-400">
-            <div className=" w-[30%] rounded-md">
+            {!isAdmin && (<div className="border p-10 rounded-full hover:scale-90 hover:bg-gray-800 duration-1000 transition-all">
+                <h1 className="text-3xl font-bold mb-4">Hello User!!</h1>
+                <p className="text-white text-sm tracking-widest w-200">
+                    This area is restricted to authorized administrators.
+                    Please log in to access the dashboard and manage the platform.
+                </p>
+            </div>)}
+            
+            {isAdmin && (<div className=" w-[30%] rounded-md">
                 <h1 className="mx-8 p-4 border-2 rounded-md text-center tracking-widest font-bold text-2xl bg-gray-900 text-white">Update Product  : {id} </h1>
                 <form
                     className="flex flex-col mx-2 p-2"
@@ -180,7 +190,7 @@ const UpdateProduct = () => {
                         SAVE PRODUCT
                     </button>
                 </form>
-            </div>
+            </div>)}
         </div>
     )
 }
