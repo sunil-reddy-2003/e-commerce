@@ -64,11 +64,8 @@ Cart → Shipping → Payment (Cash on Delivery) → Order Creation → Orders P
 ---
 
 ## 📂 Project Structure (Frontend)
-src/
-├── components/
-├── pages/
-├── context/
-└── App.jsx
+<img width="201" height="277" alt="image" src="https://github.com/user-attachments/assets/79f857e5-659d-481b-88a4-f231ab49afb7" />
+
 
 ---
 
@@ -77,7 +74,7 @@ src/
 Clone the repository:
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/sunil-reddy-2003/Amazio-frontend
 cd amazio
 
 Install dependencies:
