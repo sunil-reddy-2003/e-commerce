@@ -1,18 +1,90 @@
-# React + Vite
+# 🛒 Amazio – Full Stack E-Commerce Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🔗 **Live Demo:** https://amazio-frontend.vercel.app/
 
-Currently, two official plugins are available:
+A production-style full stack e-commerce web application built using **React.js and Spring Boot**, implementing authentication, cart management, order processing, and admin product control.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### 👤 User Features
+- JWT-based Authentication
+- Product browsing with category filtering
+- Search functionality
+- Add to Cart / Remove from Cart
+- Shipping address management
+- Cash on Delivery (COD)
+- Order placement
+- Order history & detailed order tracking
+- Protected routes for authenticated users
 
-Note: This will impact Vite dev & build performances.
+### 🛠️ Admin Features
+- Admin login authentication
+- Add new products
+- Update existing products
+- Delete products
+- View all products
+- Protected admin routes
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🧱 Tech Stack
+
+### Frontend
+- React.js
+- React Router DOM
+- Context API
+- Tailwind CSS
+- Axios
+- Vite
+
+### Backend
+- Spring Boot
+- REST APIs
+- JWT Authentication
+- PostgreSQL
+
+---
+
+## 🔐 Authentication Flow
+
+1. User logs in  
+2. Backend returns JWT token  
+3. Token stored in localStorage  
+4. Token attached in Authorization header for protected APIs  
+5. ProtectedRoute and AdminProtectedRoute guard private pages  
+
+---
+
+## 🛍️ Order Flow
+
+Cart → Shipping → Payment (Cash on Delivery) → Order Creation → Orders Page → Order Details
+
+---
+
+## 📂 Project Structure (Frontend)
+src/
+├── components/
+├── pages/
+├── context/
+└── App.jsx
+
+---
+
+## ⚙️ Run Locally
+
+Clone the repository:
+
+```bash
+git clone <your-repository-url>
+cd amazio
+
+Install dependencies:
+npm install
+
+Create a .env file:
+VITE_API_BASE_URL=http://localhost:9090
+
+Run the project:
+npm run dev
